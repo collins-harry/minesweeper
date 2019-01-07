@@ -20,13 +20,26 @@ Minesweeper game and AI player. Game built using model, view, controller perspec
 - [ ] GUI based control for human player (possible same as GUI viewer)
 
 ## AI Player
-Simple AI will iteratively alternate between basic logic clearing and flagging.
-There is a second logic technique which uses more than directly adjacent tiles to clear and flag.
-When stuck will resort to probabilistic model 
+Will initially make several random clearances, later on I will refine guesses to maximise information return (ie. corners might be a bad idea but the might have a higher probability of a 'cascade')
 
+The player will then iteratively alternate between basic logic clearing and flagging.
+There is a second more advanced logic technique for select circumstances when simple adjacent logic technique fails. 
+
+When player is stuck it will resort to analytical probabilistic techniques.
+
+I may attempt machine learning techniques later.
+
+### Initialisation
+- [ ] Random guessing
+- [ ] Refined guessing
+
+### Logic methods
 - [ ] Simple clearing function (board level)
 - [ ] Flagging function (board level)
 - [ ] Add second additional logic technique
-- [ ] Develop probabilistic model
+
+### Probabilistic method
+- [ ] Guessing probabilistic function
+- [ ] Refined probabilistic function
 
 
