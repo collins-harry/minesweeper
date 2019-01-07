@@ -1,4 +1,4 @@
-# minesweeper
+# Minesweeper
 Minesweeper game and AI player. Game built using model, view, controller perspective. 
 
 ## Game
@@ -6,9 +6,9 @@ Minesweeper game and AI player. Game built using model, view, controller perspec
 ### Model
 - [X] Initialise mine board
 - [X] Initialise viewer board
-- [ ] Toggle Flag function
-- [ ] Clear Tile function
-  - [ ] Mine checker (tile level)
+- [ ] Flag Toggle function
+- [ ] Clear single tile function
+  - [ ] Mine checker (single tile)
 
 ### Viewer 
 - [X] Text view for mines on board
@@ -16,7 +16,7 @@ Minesweeper game and AI player. Game built using model, view, controller perspec
 - [ ] GUI viewer for board
 
 ### Controller
-- [ ] text based control for AI player
+- [ ] Text based control for AI player
 - [ ] GUI based control for human player (possible same as GUI viewer)
 
 ## AI Player
