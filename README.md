@@ -9,12 +9,13 @@ Minesweeper game and AI player. Game built using model, view, controller perspec
 - [X] Flag Toggle function
 - [X] Clear single tile function
   - [X] Mine checker (single tile)
-- [ ] End Game Function
+- [X] end_game function
 
 ### Viewer 
 - [X] Text view for mines on board
-- [ ] Text view for player visible board 
+- [X] Text view for player visible board 
 - [ ] GUI viewer for board
+  - [ ] make tile.grid larger (very small atm)
 
 ### Controller
 - [ ] Text based control for AI player

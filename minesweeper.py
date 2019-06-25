@@ -4,23 +4,11 @@ Minesweeper game, going to use the model, view, controller perspective.
 '''
 import numpy as np
 import random as rand
+import tkinter as tk
 from itertools import product
+import time
 
-def main():
-    # initialise game
-    game = model(5, 10)
-    display = viewer(game)
-    #
-    game.toggle_flag((4, 4))
-    game.clear_tile((3, 3))
-    display.show_mines()
-    display.show_board()
-
-
-
-
-
-class model():
+class Model():
     '''
     ARGUEMENTS
     ---------
@@ -47,16 +35,6 @@ class model():
         flattened_board[np.array(mine_locations)] = 1
         board = flattened_board.reshape((boardsize, boardsize))
         return board, mine_locations
-    
-
-    def toggle_flag(self, location):
-        '''
-        PARAMETERS
-        ----------
-        location: tuple in form (row, column)
-        '''
-        self.viewable_board[location] = 'F'
-
 
     def _check_for_mines(self, location):
         '''
@@ -67,10 +45,15 @@ class model():
         if self.board[location] == 1:
             return True
         else:
-            print(f'mine value at location {location} = {self.board[location]}')
-            print('^ should be 0')
             return False
 
+    def toggle_flag(self, location):
+        '''
+        PARAMETERS
+        ----------
+        location: tuple in form (row, column)
+        '''
+        self.viewable_board[location] = 'F'
 
     def clear_tile(self, location):
         '''
@@ -80,14 +63,45 @@ class model():
         '''
         if self._check_for_mines(location):
             # you lost
+            self.end_game()
             return False
         else:
             self.viewable_board[location] = 'C'
             return True
 
+    def end_game(self):
+        raise Exception('YOU LOST')
+
+class GUI_Viewer():
+    def __init__(self, model):
+        self.model = model
+        self.viewable_board = self.model.viewable_board
+        self.root = tk.Tk()
+        # self.root.mainloop()
+        self.root.update_idletasks()
+        self.root.update()
+        time.sleep(1)
+
+    def draw_board(self):
+        for i, row in enumerate(self.viewable_board):
+            for j, value in enumerate(row):
+                tile = tk.Label(self.root, text=value, bg='grey')
+                tile.grid(row=i, column=j)
+        self.root.update_idletasks()
+        self.root.update()
+        time.sleep(1)
 
 
-class viewer():
+    def show_mines(self):
+        board_as_string = np.array2string(self.model.board)
+        print(board_as_string)
+
+    def show_board(self):
+        board_as_string = np.array2string(self.model.viewable_board)
+        print(board_as_string)
+  
+
+class Viewer():
     def __init__(self, model):
         self.model = model
 
@@ -104,4 +118,23 @@ class viewer():
 
     
 if __name__ == '__main__':
-    main()
+
+    # initialise game
+    game = Model(5, 10)
+    display = Viewer(game)
+    gui_display = GUI_Viewer(game)
+    #
+    game.toggle_flag((4, 4))
+    game.clear_tile((3, 3))
+    display.show_mines()
+    display.show_board()
+    gui_display.show_mines()
+    gui_display.show_board()
+    gui_display.draw_board()
+    game.toggle_flag((3, 4))
+    game.clear_tile((2, 3))
+    gui_display.draw_board()
+    game.end_game()
+
+
+ain()
